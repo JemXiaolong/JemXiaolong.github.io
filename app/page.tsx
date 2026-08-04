@@ -1,5 +1,6 @@
 import { About } from "@/components/About";
 import { Contact, Footer } from "@/components/Contact";
+import { Experience } from "@/components/Experience";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Work } from "@/components/Work";
@@ -30,8 +31,9 @@ export default async function Home() {
     <>
       <Header />
       <main className="flex-1">
-        <Hero prCount={prCount} />
-        <Work />
+        <Hero />
+        <Work prCount={prCount} />
+        <Experience />
         <About />
         <Contact />
       </main>

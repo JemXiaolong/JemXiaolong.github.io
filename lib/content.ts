@@ -48,17 +48,19 @@ export const PROJECTS: Project[] = [
       es: [
         "Panel multi-hijo con promedio general y reportes activos a la vista",
         "Calificaciones por materia y parcial, con indicadores de color que delatan el área débil de un vistazo",
-        "Avisos oficiales segmentados por grado y grupo",
+        "Avisos oficiales segmentados por grado y grupo, con acuse de lectura",
+        "Autorizaciones de salida por código QR con expiración de 15 minutos, para validación presencial en el acceso del plantel",
         "Modo oscuro, navegación inferior rediseñada y gráficas (v1.1.0)",
       ],
       en: [
         "Multi-child dashboard with overall average and active reports at a glance",
         "Grades by subject and term, with colour indicators that surface the weak spot instantly",
-        "Official announcements targeted per grade and group",
+        "Official announcements targeted per grade and group, with read receipts",
+        "QR-code exit authorisations with a 15-minute expiry, validated in person at the school entrance",
         "Dark mode, redesigned bottom navigation and charts (v1.1.0)",
       ],
     },
-    tags: ["React Native", "Expo", "TypeScript", "REST API", "Push notifications"],
+    tags: ["React Native", "TypeScript", "Zustand", "EAS Build", "iOS + Android"],
     href: APP_STORE_URL,
     linkLabel: { es: "Ver en la App Store", en: "View on the App Store" },
     featured: true,
@@ -94,6 +96,21 @@ export const PROJECTS: Project[] = [
     linkLabel: { es: "Ver mis PRs mergeados", en: "See my merged PRs" },
   },
   {
+    id: "potato-debug",
+    year: { es: "2026", en: "2026" },
+    title: { es: "Potato Debug", en: "Potato Debug" },
+    role: {
+      es: "Extensión de navegador para Odoo 19",
+      en: "Browser extension for Odoo 19",
+    },
+    summary: {
+      es: "Extensión que permite alternar el modo debug y los assets en Odoo 19, con un panel de inspección de récords. Nació de una molestia diaria: dejar de escribir la URL a mano cada vez.",
+      en: "An extension that toggles debug mode and assets in Odoo 19, with a record inspection panel. Born from a daily annoyance: never typing that URL by hand again.",
+    },
+    points: { es: [], en: [] },
+    tags: ["JavaScript", "Chrome Extension", "Odoo"],
+  },
+  {
     id: "precommit",
     year: { es: "2026", en: "2026" },
     title: { es: "pre-commit-agromarin", en: "pre-commit-agromarin" },
@@ -123,24 +140,181 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+export interface Role {
+  id: string;
+  company: string;
+  title: Copy;
+  period: Copy;
+  length: Copy;
+  place: Copy;
+  summary: Copy;
+  points: { es: string[]; en: string[] };
+  stack: string[];
+}
+
+export const EXPERIENCE: Role[] = [
+  {
+    id: "agromarin",
+    company: "AgroMarin",
+    title: { es: "Full Stack Developer", en: "Full Stack Developer" },
+    period: { es: "ago. 2025 — actualidad", en: "Aug 2025 — present" },
+    length: { es: "1 año", en: "1 yr" },
+    place: { es: "Metepec, Estado de México", en: "Metepec, México" },
+    summary: {
+      es: "Desarrollo y mantenimiento de módulos custom sobre un fork interno de Odoo 19 para operaciones agroindustriales: ventas, compras, inventario, geoespacial e integraciones.",
+      en: "Custom module development and maintenance on an internal Odoo 19 fork for agro-industrial operations: sales, purchasing, inventory, geospatial and integrations.",
+    },
+    points: {
+      es: [
+        "+850 commits entre core, enterprise y addons (~137k líneas), incluyendo contribuciones al core del framework: ORM, motor de vistas OWL, mensajería, editor HTML y contabilidad",
+        "Autor de 22 módulos nuevos desde cero: almacenamiento en Amazon S3 con modo híbrido y permisos por usuario, telemetría de PLCs industriales vía AWS IoT Core (MQTT) y catálogo web de vehículos con cotización por WhatsApp",
+        "Ingesta continua de telemetría GPS y sensores industriales con procesamiento asíncrono en cola de trabajos; diagnóstico y resolución de contención de concurrencia en PostgreSQL bajo ráfagas de escritura",
+        "Rendimiento en producción: perfilado de consultas lentas, análisis de planes de ejecución, tuning de PostgreSQL y dimensionamiento de workers en AWS EC2",
+        "Hardening del pipeline CI/CD en Docker: extensión Rust, upgrade a PostgreSQL 18 y automatización de linting a escala de repositorio",
+        "Integraciones con Telegram Bot (aprobaciones, asistencias, automatización contable), APIs externas y módulos geoespaciales con PostGIS",
+      ],
+      en: [
+        "850+ commits across core, enterprise and addons (~137k lines), including framework core contributions: ORM, OWL view engine, messaging, HTML editor and accounting",
+        "Author of 22 new modules from scratch: Amazon S3 storage with hybrid mode and per-user permissions, industrial PLC telemetry over AWS IoT Core (MQTT), and a vehicle web catalogue with WhatsApp quoting",
+        "Continuous GPS and industrial-sensor telemetry ingestion with async job-queue processing; diagnosed and fixed PostgreSQL concurrency contention under write bursts",
+        "Production performance: slow-query profiling, execution-plan analysis, PostgreSQL tuning and worker sizing on AWS EC2",
+        "CI/CD pipeline hardening in Docker: Rust extension, PostgreSQL 18 upgrade and repository-scale linting automation",
+        "Telegram Bot integrations (approvals, attendance, accounting automation), external APIs and geospatial modules with PostGIS",
+      ],
+    },
+    stack: ["Odoo 19", "Python", "PostgreSQL", "PostGIS", "OWL", "AWS", "MQTT", "Docker", "Rust"],
+  },
+  {
+    id: "geh-role",
+    company: "Grupo Educativo Hidalgo",
+    title: { es: "Desarrollador Móvil (React Native)", en: "Mobile Developer (React Native)" },
+    period: { es: "ene. 2026 — jun. 2026", en: "Jan 2026 — Jun 2026" },
+    length: { es: "6 meses", en: "6 mos" },
+    place: { es: "México · remoto", en: "México · remote" },
+    summary: {
+      es: "Desarrollo de «Portal Escolar GEH» para Android e iOS, de la arquitectura a la publicación en la App Store.",
+      en: "Built “Portal Escolar GEH” for Android and iOS, from architecture through App Store release.",
+    },
+    points: {
+      es: [
+        "Diseño y desarrollo end-to-end: arquitectura, navegación, interfaz y compilación de binarios distribuibles",
+        "Seis módulos para padres de familia: calificaciones por bimestre, historial de asistencia, comunicados con acuse de lectura, estado de pagos y autorizaciones de salida",
+        "Autorizaciones de salida por código QR con expiración de 15 minutos, pensadas para validación presencial en el acceso del plantel",
+        "Soporte multi-alumno: una cuenta de tutor administra a varios hijos inscritos",
+        "Sesión persistente y estado global con Zustand + AsyncStorage",
+        "Builds de Android (APK) con EAS Build y ciclo completo de release en App Store: firma, ficha de tienda y actualizaciones",
+      ],
+      en: [
+        "End-to-end design and development: architecture, navigation, interface and distributable binaries",
+        "Six modules for parents: term grades, attendance history, announcements with read receipts, payment status and exit authorisations",
+        "QR-code exit authorisations with a 15-minute expiry, designed for in-person validation at the school entrance",
+        "Multi-student support: one guardian account manages several enrolled children",
+        "Persistent sessions and global state with Zustand + AsyncStorage",
+        "Android (APK) builds via EAS Build and the full App Store release cycle: signing, store listing and updates",
+      ],
+    },
+    stack: ["React Native", "TypeScript", "Zustand", "AsyncStorage", "EAS Build", "React Native SVG"],
+  },
+  {
+    id: "cecytem",
+    company: "CECYTEM",
+    title: { es: "Senior Full Stack Developer", en: "Senior Full Stack Developer" },
+    period: { es: "mar. 2018 — ago. 2025", en: "Mar 2018 — Aug 2025" },
+    length: { es: "7 años 6 meses", en: "7 yrs 6 mos" },
+    place: { es: "Xonacatlán, Estado de México", en: "Xonacatlán, México" },
+    summary: {
+      es: "Lideré el desarrollo de software institucional durante siete años, construyendo plataformas educativas y automatizaciones para una de las instituciones de educación tecnológica más grandes del Estado de México.",
+      en: "Led institutional software development for seven years, building educational platforms and automation for one of the largest technical-education institutions in the State of México.",
+    },
+    points: {
+      es: [
+        "Diseñé y desarrollé el sistema de inscripciones institucional, optimizando el registro de +2,000 alumnos por ciclo escolar",
+        "Automatizaciones con Google Apps Script integrando Classroom, Drive y Docs para flujos académicos",
+        "Desarrollé y personalicé módulos en Odoo ERP (Enterprise), incluyendo correcciones de bugs en el core",
+        "Lideré proyectos de innovación: intérprete de lenguaje de señas con Python/IA, asistencias inteligentes y bot institucional",
+        "Sitio web institucional, plataforma interna de gestión académica y robótica educativa con Arduino",
+      ],
+      en: [
+        "Designed and built the institutional enrolment system, streamlining registration for 2,000+ students per school year",
+        "Google Apps Script automation integrating Classroom, Drive and Docs for academic workflows",
+        "Developed and customised Odoo ERP (Enterprise) modules, including core bug fixes",
+        "Led innovation projects: a sign-language interpreter with Python/AI, smart attendance and an institutional bot",
+        "Institutional website, internal academic-management platform and educational robotics with Arduino",
+      ],
+    },
+    stack: ["React", "Vue", "Django", "Python", "MySQL", "Odoo", "Google Apps Script", "Arduino"],
+  },
+  {
+    id: "freelance",
+    company: "Freelance",
+    title: { es: "Desarrollador Freelance", en: "Freelance Developer" },
+    period: { es: "mar. 2016 — mar. 2018", en: "Mar 2016 — Mar 2018" },
+    length: { es: "2 años", en: "2 yrs" },
+    place: { es: "Metepec, México", en: "Metepec, México" },
+    summary: {
+      es: "Aplicaciones web y sitios a medida para clientes locales, combinando frontend con diseño gráfico y branding.",
+      en: "Custom web apps and sites for local clients, pairing frontend work with graphic design and branding.",
+    },
+    points: {
+      es: [
+        "Aplicaciones web a medida con backend en Python y Java sobre MySQL",
+        "Sitios institucionales y comerciales con PHP y JavaScript",
+        "Diseño gráfico y branding para clientes locales",
+      ],
+      en: [
+        "Custom web applications with Python and Java back ends on MySQL",
+        "Institutional and commercial sites with PHP and JavaScript",
+        "Graphic design and branding for local clients",
+      ],
+    },
+    stack: ["Python", "Java", "JavaScript", "MySQL", "PHP", "Photoshop", "Illustrator"],
+  },
+  {
+    id: "gegames",
+    company: "Ge Games",
+    title: { es: "Producción y posproducción de personajes", en: "Character production & post-production" },
+    period: { es: "ene. 2014 — ago. 2016", en: "Jan 2014 — Aug 2016" },
+    length: { es: "2 años 8 meses", en: "2 yrs 8 mos" },
+    place: { es: "Toluca, México · remoto", en: "Toluca, México · remote" },
+    summary: {
+      es: "Diseño de personajes 3D y programación de interacción para videojuego, además de la producción musical y de video.",
+      en: "3D character design and interaction programming for a video game, plus music and video production.",
+    },
+    points: {
+      es: [
+        "Personajes 3D con Blender, Photoshop e Illustrator",
+        "Programación de funciones de interacción en C# dentro de Unity",
+        "Producción musical y de video para el juego y su publicidad",
+      ],
+      en: [
+        "3D characters with Blender, Photoshop and Illustrator",
+        "Interaction features programmed in C# inside Unity",
+        "Music and video production for the game and its marketing",
+      ],
+    },
+    stack: ["Unity", "C#", "Blender", "Photoshop", "Illustrator"],
+  },
+];
+
 export const STACK: { label: Copy; items: string[] }[] = [
   {
     label: { es: "Móvil y frontend", en: "Mobile & frontend" },
-    items: ["React Native", "Expo", "TypeScript", "JavaScript", "Next.js", "Tailwind CSS", "OWL"],
+    items: ["React Native", "Expo", "TypeScript", "JavaScript", "React", "Vue", "Next.js", "Tailwind CSS", "OWL", "Zustand"],
   },
   {
     label: { es: "Backend y datos", en: "Backend & data" },
-    items: ["Python", "Odoo", "PostgreSQL", "Node.js", "REST APIs"],
+    items: ["Python", "Odoo", "Django", "PostgreSQL", "PostGIS", "MySQL", "Node.js", "REST APIs", "Rust"],
   },
   {
     label: { es: "Infra y herramientas", en: "Infra & tooling" },
-    items: ["Linux", "Docker", "AWS", "nginx", "Git", "GitHub Actions", "pre-commit"],
+    items: ["Linux", "Docker", "AWS (EC2, S3, IoT Core)", "MQTT", "nginx", "Git", "GitHub Actions", "EAS Build", "pre-commit"],
   },
 ];
 
 export const UI = {
   nav: {
     work: { es: "Trabajo", en: "Work" },
+    experience: { es: "Experiencia", en: "Experience" },
     about: { es: "Sobre mí", en: "About" },
     contact: { es: "Contacto", en: "Contact" },
   },
@@ -149,19 +323,20 @@ export const UI = {
     line2: { es: "que la gente", en: "people actually" },
     line3: { es: "de verdad usa.", en: "use." },
     sub: {
-      es: "Desarrollador full stack. Publico apps móviles en la App Store y trabajo dentro del fork de un framework ERP que corre en producción.",
-      en: "Full stack developer. I ship mobile apps to the App Store and work inside the fork of an ERP framework running in production.",
+      es: "Desarrollador full stack, diez años construyendo software. Publico apps móviles en la App Store y trabajo dentro del fork de un framework ERP que corre en producción.",
+      en: "Full stack developer, ten years building software. I ship mobile apps to the App Store and work inside the fork of an ERP framework running in production.",
     },
     cta: { es: "Ver mi trabajo", en: "See my work" },
     ctaContact: { es: "Contáctame", en: "Get in touch" },
   },
   stats: {
-    appStore: { es: "app publicada en la App Store", en: "app live on the App Store" },
-    prs: { es: "PRs mergeados en un fork de Odoo", en: "merged PRs in an Odoo fork" },
-    devices: { es: "dispositivos iOS soportados", en: "supported iOS devices" },
+    years: { es: "años construyendo software", en: "years building software" },
+    commits: { es: "commits en el fork de un framework ERP", en: "commits in an ERP framework fork" },
+    modules: { es: "módulos nuevos escritos desde cero", en: "new modules written from scratch" },
   },
   sections: {
     work: { es: "Trabajo seleccionado", en: "Selected work" },
+    experience: { es: "Experiencia", en: "Experience" },
     about: { es: "Sobre mí", en: "About" },
     stack: { es: "Stack", en: "Stack" },
     contact: { es: "Hablemos", en: "Let's talk" },

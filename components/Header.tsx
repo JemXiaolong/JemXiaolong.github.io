@@ -35,6 +35,7 @@ export function Header() {
 
   const links = [
     { href: "#work", label: UI.nav.work },
+    { href: "#experience", label: UI.nav.experience },
     { href: "#about", label: UI.nav.about },
     { href: "#contact", label: UI.nav.contact },
   ];

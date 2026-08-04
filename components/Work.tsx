@@ -97,7 +97,15 @@ function FeaturedProject({ project }: { project: Project }) {
   );
 }
 
-function ListedProject({ project, delay }: { project: Project; delay: number }) {
+function ListedProject({
+  project,
+  delay,
+  extraTag,
+}: {
+  project: Project;
+  delay: number;
+  extraTag?: string;
+}) {
   const t = useT();
   const { lang } = usePrefs();
   const points = project.points[lang];
@@ -124,6 +132,11 @@ function ListedProject({ project, delay }: { project: Project; delay: number }) 
       )}
 
       <div className="mt-5 flex flex-wrap gap-2">
+        {extraTag && (
+          <span className="rounded-full border border-accent px-3 py-1 text-xs font-medium text-accent">
+            {extraTag}
+          </span>
+        )}
         {project.tags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>
         ))}
@@ -134,9 +147,11 @@ function ListedProject({ project, delay }: { project: Project; delay: number }) 
   );
 }
 
-export function Work() {
+export function Work({ prCount }: { prCount: number }) {
   const t = useT();
+  const { lang } = usePrefs();
   const [featured, ...rest] = PROJECTS;
+  const prLabel = lang === "es" ? `${prCount} PRs mergeados` : `${prCount} merged PRs`;
 
   return (
     <section id="work" className="mx-auto w-full max-w-5xl px-6 py-20 sm:px-8">
@@ -150,7 +165,12 @@ export function Work() {
 
       <div className="mt-14">
         {rest.map((project, i) => (
-          <ListedProject key={project.id} project={project} delay={i * 60} />
+          <ListedProject
+            key={project.id}
+            project={project}
+            delay={i * 60}
+            extraTag={project.id === "odoo" ? prLabel : undefined}
+          />
         ))}
       </div>
     </section>

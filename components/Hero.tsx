@@ -4,18 +4,13 @@ import { useT } from "@/app/providers";
 import { Reveal } from "@/components/Reveal";
 import { UI } from "@/lib/content";
 
-interface HeroProps {
-  /** Merged-PR count, resolved at build time from the GitHub API. */
-  prCount: number;
-}
-
-export function Hero({ prCount }: HeroProps) {
+export function Hero() {
   const t = useT();
 
   const stats = [
-    { value: "1", label: UI.stats.appStore },
-    { value: String(prCount), label: UI.stats.prs },
-    { value: "127", label: UI.stats.devices },
+    { value: "10", label: UI.stats.years },
+    { value: "850+", label: UI.stats.commits },
+    { value: "22", label: UI.stats.modules },
   ];
 
   return (
