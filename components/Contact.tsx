@@ -16,13 +16,15 @@ export function Contact() {
   return (
     <section id="contact" className="mx-auto w-full max-w-5xl px-6 py-20 sm:px-8">
       <Reveal>
-        <h2 className="mb-10 font-display text-sm uppercase tracking-[0.22em] text-muted">
+        <h2 className="eyebrow mb-10 flex items-center gap-3">
+          <span className="text-accent">04</span>
+          <span className="h-px w-8 bg-hairline" />
           {t(UI.sections.contact)}
         </h2>
       </Reveal>
 
       <Reveal delay={60}>
-        <p className="max-w-2xl font-display text-3xl leading-snug tracking-tight sm:text-4xl">
+        <p className="max-w-2xl font-display text-3xl leading-snug sm:text-4xl">
           {t(UI.contact.lead)}
         </p>
       </Reveal>
@@ -30,7 +32,7 @@ export function Contact() {
       <Reveal delay={140}>
         <a
           href={`mailto:${EMAIL}`}
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-transform duration-200 hover:-translate-y-0.5"
+          className="mt-8 inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-medium text-paper transition-transform duration-200 hover:-translate-y-0.5"
         >
           {t(UI.contact.email)}
         </a>

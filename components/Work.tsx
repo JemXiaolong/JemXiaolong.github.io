@@ -16,7 +16,7 @@ function ArrowIcon() {
 
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="rounded-full border border-hairline px-3 py-1 text-xs text-muted">
+    <span className="rounded-md border border-hairline bg-raise px-2.5 py-1 font-mono text-[0.7rem] text-muted">
       {children}
     </span>
   );
@@ -47,10 +47,10 @@ function FeaturedProject({ project }: { project: Project }) {
   const { lang } = usePrefs();
 
   return (
-    <Reveal as="article" className="rounded-3xl border border-hairline bg-raise p-6 sm:p-10">
+    <Reveal as="article" className="rounded-xl border border-hairline bg-raise p-6 sm:p-10">
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <h3 className="font-display text-3xl tracking-tight sm:text-4xl">{t(project.title)}</h3>
-        <span className="text-sm text-muted">{t(project.year)}</span>
+        <h3 className="font-display text-2xl sm:text-3xl">{t(project.title)}</h3>
+        <span className="font-mono text-xs text-muted">{t(project.year)}</span>
       </div>
 
       <p className="mt-2 text-sm font-medium text-accent">{t(project.role)}</p>
@@ -113,8 +113,8 @@ function ListedProject({
   return (
     <Reveal as="article" delay={delay} className="group border-t border-hairline py-9">
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-        <h3 className="font-display text-2xl tracking-tight sm:text-3xl">{t(project.title)}</h3>
-        <span className="text-sm text-muted">{t(project.year)}</span>
+        <h3 className="font-display text-xl sm:text-2xl">{t(project.title)}</h3>
+        <span className="font-mono text-xs text-muted">{t(project.year)}</span>
       </div>
 
       <p className="mt-1.5 text-sm font-medium text-accent">{t(project.role)}</p>
@@ -133,7 +133,7 @@ function ListedProject({
 
       <div className="mt-5 flex flex-wrap gap-2">
         {extraTag && (
-          <span className="rounded-full border border-accent px-3 py-1 text-xs font-medium text-accent">
+          <span className="rounded-md border border-accent bg-accent-soft px-2.5 py-1 font-mono text-[0.7rem] font-medium text-accent">
             {extraTag}
           </span>
         )}
@@ -156,7 +156,9 @@ export function Work({ prCount }: { prCount: number }) {
   return (
     <section id="work" className="mx-auto w-full max-w-5xl px-6 py-20 sm:px-8">
       <Reveal>
-        <h2 className="mb-10 font-display text-sm uppercase tracking-[0.22em] text-muted">
+        <h2 className="eyebrow mb-10 flex items-center gap-3">
+          <span className="text-accent">01</span>
+          <span className="h-px w-8 bg-hairline" />
           {t(UI.sections.work)}
         </h2>
       </Reveal>

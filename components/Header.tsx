@@ -49,9 +49,9 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-4 px-6 sm:px-8">
         <a
           href="#top"
-          className="font-display text-xl tracking-tight transition-opacity hover:opacity-60"
+          className="font-display text-lg transition-opacity hover:opacity-60"
         >
-          Jem Escudero
+          Jem Escudero<span className="text-accent">.</span>
         </a>
 
         <nav className="flex items-center gap-1 sm:gap-2">

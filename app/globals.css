@@ -4,21 +4,25 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --paper: #faf8f4;
-  --ink: #1a1917;
-  --muted: #6d675d;
-  --hairline: #e0dbd1;
+  --paper: #f7f8fa;
+  --ink: #0d1117;
+  --muted: #5b6472;
+  --hairline: #dfe3ea;
   --raise: #ffffff;
-  --accent: #b8410e;
+  --accent: #0a7d55;
+  --accent-soft: rgba(10, 125, 85, 0.1);
+  --grid: rgba(13, 17, 23, 0.045);
 }
 
 [data-theme="dark"] {
-  --paper: #0e0e0c;
-  --ink: #eeeae1;
-  --muted: #918a7d;
-  --hairline: #262420;
-  --raise: #161512;
-  --accent: #f97316;
+  --paper: #08090c;
+  --ink: #e8ecf2;
+  --muted: #7d8797;
+  --hairline: #1c2029;
+  --raise: #0e1015;
+  --accent: #2ee6a0;
+  --accent-soft: rgba(46, 230, 160, 0.13);
+  --grid: rgba(255, 255, 255, 0.038);
 }
 
 @theme inline {
@@ -28,8 +32,10 @@
   --color-hairline: var(--hairline);
   --color-raise: var(--raise);
   --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-inter);
   --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
 html {
@@ -39,11 +45,38 @@ html {
 }
 
 body {
-  background: var(--paper);
+  background-color: var(--paper);
+  /* Faint engineering grid, plus a soft accent glow behind the hero. */
+  background-image:
+    radial-gradient(60rem 32rem at 78% -8%, var(--accent-soft), transparent 65%),
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 100% 100%, 64px 64px, 64px 64px;
+  background-attachment: fixed, fixed, fixed;
   color: var(--ink);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Display type: geometric sans, tight and confident. */
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Small monospaced section labels: 01 / WORK */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 ::selection {

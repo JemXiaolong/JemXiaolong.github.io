@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
 import { NO_FLASH_SCRIPT, Providers } from "./providers";
 import "./globals.css";
 
@@ -9,10 +9,15 @@ const inter = Inter({
   display: "swap",
 });
 
-const display = Instrument_Serif({
+const display = Space_Grotesk({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: "400",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -44,7 +49,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${inter.variable} ${display.variable} h-full antialiased`}>
+    <html lang="es" className={`${inter.variable} ${display.variable} ${mono.variable} h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH_SCRIPT }} />
       </head>

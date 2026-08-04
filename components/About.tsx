@@ -10,7 +10,9 @@ export function About() {
   return (
     <section id="about" className="mx-auto w-full max-w-5xl px-6 py-20 sm:px-8">
       <Reveal>
-        <h2 className="mb-10 font-display text-sm uppercase tracking-[0.22em] text-muted">
+        <h2 className="eyebrow mb-10 flex items-center gap-3">
+          <span className="text-accent">03</span>
+          <span className="h-px w-8 bg-hairline" />
           {t(UI.sections.about)}
         </h2>
       </Reveal>
@@ -18,7 +20,7 @@ export function About() {
       <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr]">
         <div className="space-y-6">
           <Reveal delay={60}>
-            <p className="font-display text-2xl leading-snug tracking-tight sm:text-3xl">
+            <p className="font-display text-2xl leading-snug sm:text-3xl">
               {t(UI.about.p1)}
             </p>
           </Reveal>
@@ -47,7 +49,7 @@ export function About() {
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="rounded-full border border-hairline px-3 py-1 text-xs text-muted transition-colors hover:border-ink hover:text-ink"
+                      className="rounded-md border border-hairline bg-raise px-2.5 py-1 font-mono text-[0.7rem] text-muted transition-colors hover:border-ink hover:text-ink"
                     >
                       {item}
                     </li>

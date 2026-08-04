@@ -17,8 +17,8 @@ function RoleEntry({ role, delay }: { role: Role; delay: number }) {
       />
 
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-        <h3 className="font-display text-2xl tracking-tight">{t(role.title)}</h3>
-        <span className="text-sm text-muted">
+        <h3 className="font-display text-xl sm:text-2xl">{t(role.title)}</h3>
+        <span className="font-mono text-xs text-muted">
           {t(role.period)} · {t(role.length)}
         </span>
       </div>
@@ -42,7 +42,7 @@ function RoleEntry({ role, delay }: { role: Role; delay: number }) {
         {role.stack.map((item) => (
           <span
             key={item}
-            className="rounded-full border border-hairline px-3 py-1 text-xs text-muted"
+            className="rounded-md border border-hairline bg-raise px-2.5 py-1 font-mono text-[0.7rem] text-muted"
           >
             {item}
           </span>
@@ -58,7 +58,9 @@ export function Experience() {
   return (
     <section id="experience" className="mx-auto w-full max-w-5xl px-6 py-20 sm:px-8">
       <Reveal>
-        <h2 className="mb-10 font-display text-sm uppercase tracking-[0.22em] text-muted">
+        <h2 className="eyebrow mb-10 flex items-center gap-3">
+          <span className="text-accent">02</span>
+          <span className="h-px w-8 bg-hairline" />
           {t(UI.sections.experience)}
         </h2>
       </Reveal>
