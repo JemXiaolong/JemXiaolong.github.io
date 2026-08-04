@@ -2,9 +2,10 @@
 
 import { useT } from "@/app/providers";
 import { Reveal } from "@/components/Reveal";
-import { APP_STORE_URL, EMAIL, GITHUB_URL, UI } from "@/lib/content";
+import { APP_STORE_URL, EMAIL, GITHUB_URL, LINKEDIN_URL, UI } from "@/lib/content";
 
 const CHANNELS = [
+  { label: "LinkedIn", href: LINKEDIN_URL },
   { label: "GitHub", href: GITHUB_URL },
   { label: "App Store", href: APP_STORE_URL },
 ];

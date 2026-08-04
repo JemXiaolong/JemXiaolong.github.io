@@ -3,6 +3,7 @@ export type Lang = "es" | "en";
 export const APP_STORE_URL =
   "https://apps.apple.com/mx/app/app-grupo-educativo-hidalgo/id6770196534";
 export const GITHUB_URL = "https://github.com/JemXiaolong";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/jemxiaolong/";
 export const EMAIL = "escuderojem@outlook.com";
 export const ODOO_PRS_URL =
   "https://github.com/Agro-Marin/odoo/pulls?q=is%3Apr+author%3AJemXiaolong+is%3Amerged";
