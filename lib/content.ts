@@ -287,6 +287,7 @@ export const EXPERIENCE: Role[] = [
     points: {
       es: [
         "Más de 5,000 commits entre el framework y los addons, incluyendo el core: ORM, cliente web OWL, mensajería, editor HTML y contabilidad. Buena parte llegaron por loops de auditoría con agentes de IA que diseñé (lint, guías, tests), cada uno con su PR revisable",
+        "Flujos contables multicompañía: aprobaciones de facturas y pagos antes de publicar (también desde Telegram), asientos y conciliación automáticos, plantillas de asientos y pagos, CFDI de nómina, dispersión bancaria y crédito a clientes",
         "Migración de producción de AWS a OVH: despliegue A/B, respaldos con pgBackRest en dos regiones y restic, CrowdSec y aprovisionamiento con Ansible",
         "odoo-rust-orm: reimplementación en Rust de la ruta de lectura del ORM, comparada en sombra contra el ORM de Python sobre la base real",
         "Archivos del ERP en object storage (S3) con modo híbrido, y login por llave SSH sin API keys (auth_unix_peer)",
@@ -297,6 +298,7 @@ export const EXPERIENCE: Role[] = [
       ],
       en: [
         "5,000+ commits across the framework and addons, including core: ORM, OWL web client, messaging, HTML editor and accounting. Many landed through AI-agent audit loops I designed (lint, guidelines, tests), each with its own reviewable PR",
+        "Multi-company accounting flows: invoice and payment approvals before posting (also from Telegram), automatic entries and reconciliation, entry and payment templates, payroll CFDI, bank dispersion and customer credit",
         "Moved production from AWS to OVH: A/B deploys, pgBackRest backups in two regions plus restic, CrowdSec and Ansible provisioning",
         "odoo-rust-orm: a Rust reimplementation of the ORM read path, shadow-diffed against the Python ORM on the real database",
         "ERP files on object storage (S3) with a hybrid mode, and SSH-key login with no API keys (auth_unix_peer)",
@@ -306,7 +308,7 @@ export const EXPERIENCE: Role[] = [
         "Production performance: slow-query profiling, execution plans, PostgreSQL tuning and worker sizing",
       ],
     },
-    stack: ["Odoo 19", "Python 3.14", "PostgreSQL 18", "PostGIS", "OWL", "Rust", "OVH", "AWS", "Ansible", "MCP"],
+    stack: ["Odoo 19", "Python 3.14", "PostgreSQL 18", "PostGIS", "OWL", "Contabilidad / CFDI", "Rust", "OVH", "AWS", "Ansible", "MCP"],
   },
   {
     id: "geh-role",
