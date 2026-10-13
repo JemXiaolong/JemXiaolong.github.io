@@ -30,9 +30,42 @@ export interface Project {
   href?: string;
   linkLabel?: Copy;
   featured?: boolean;
+  /** Renders the App Store screenshots strip under a featured project. */
+  shots?: boolean;
 }
 
 export const PROJECTS: Project[] = [
+  {
+    id: "enjambre",
+    year: { es: "2026 — hoy", en: "2026 — now" },
+    title: { es: "Enjambre de agentes de IA", en: "AI agent swarm" },
+    role: {
+      es: "Arquitectura y operación — migraciones y soluciones a escala de repositorio",
+      en: "Architecture and operations — migrations and fixes at repository scale",
+    },
+    summary: {
+      es: "Un enjambre de agentes de IA que trabaja sobre el fork de Odoo como un equipo de ingeniería: unos investigan, otros implementan, otra familia de modelos revisa y el código decide si algo entra. Hoy migra la lógica de negocio de Python a Rust y los servicios de red a Go; antes llevó miles de correcciones y pruebas al fork, siempre con un PR revisable por lote.",
+      en: "A swarm of AI agents that works on the Odoo fork like an engineering team: some research, others implement, another model family reviews, and code decides what lands. Today it migrates business logic from Python to Rust and network services to Go; before that it shipped thousands of fixes and tests to the fork, always one reviewable PR per batch.",
+    },
+    points: {
+      es: [
+        "Papeles con modelos distintos de Anthropic y OpenAI: orquestar, investigar, portar, refutar y escalar. Cada familia implementa un carril y revisa el otro, para que nadie revise su propio trabajo",
+        "Siete compuertas (G0–G6) que corre código, no los agentes: pruebas antes y después, clippy, paridad del gemelo en Rust contra el original con semilla fija, benchmark, refutación cruzada e integración con rebase limpio",
+        "Inventario de 1,541 unidades de lógica portable en el repo de Odoo, ordenado por el perfilado de producción: primero lo caliente",
+        "Lanzador que reparte agentes entre varias cuentas según carga y cupo, y un ledger reanudable que es la única memoria del loop",
+        "El mismo motor corre los loops de auditoría de módulos, generación de pruebas unitarias, revisión de PRs, backports y triaje de errores de producción",
+      ],
+      en: [
+        "Roles on different Anthropic and OpenAI models: orchestrate, research, port, refute and escalate. Each family implements one lane and reviews the other, so nobody reviews their own work",
+        "Seven gates (G0–G6) run by code, not by the agents: tests before and after, clippy, seeded parity of the Rust twin against the original, benchmarks, cross-family refutation and clean-rebase integration",
+        "An inventory of 1,541 portable logic units in the Odoo repo, ordered by production profiling: hot paths first",
+        "A launcher that spreads agents across accounts by load and quota, and a resumable ledger that is the loop's only memory",
+        "The same engine runs the module-audit, unit-test generation, PR review, backport and production error-triage loops",
+      ],
+    },
+    tags: ["Claude", "GPT", "Python", "Rust", "PyO3", "Go", "Git worktrees", "MCP"],
+    featured: true,
+  },
   {
     id: "geh",
     year: { es: "2026", en: "2026" },
@@ -65,6 +98,7 @@ export const PROJECTS: Project[] = [
     href: APP_STORE_URL,
     linkLabel: { es: "Ver en la App Store", en: "View on the App Store" },
     featured: true,
+    shots: true,
   },
   {
     id: "historial-clinico",
@@ -95,6 +129,59 @@ export const PROJECTS: Project[] = [
       ],
     },
     tags: ["Next.js 16", "TypeScript", "Prisma", "SQLite", "Electron", "Zod"],
+  },
+  {
+    id: "contabilidad",
+    year: { es: "2025 — hoy", en: "2025 — now" },
+    title: { es: "Flujos contables en Odoo 19", en: "Accounting flows on Odoo 19" },
+    role: {
+      es: "Contabilidad, nómina y crédito — localización México",
+      en: "Accounting, payroll and credit — Mexican localization",
+    },
+    summary: {
+      es: "Módulos para que la operación contable de varias empresas corra con la menor intervención manual posible: aprobaciones antes de publicar, asientos que se generan solos, CFDI y nómina mexicana, crédito a clientes y dispersión bancaria.",
+      en: "Modules that let the accounting of several companies run with as little manual work as possible: approvals before posting, entries that post themselves, Mexican CFDI and payroll, customer credit and bank dispersion.",
+    },
+    points: {
+      es: [
+        "Aprobaciones de facturas y pagos antes de publicarse, también desde Telegram, con los asientos de seguimiento generados en automático",
+        "Automatizaciones contables: documentos y conciliación dentro de flujos, plantillas de asientos y pagos reutilizables, y numeración por secuencias de diario",
+        "Localización México: CFDI de nómina, CFDI archivados en Documents y reglas para evitar asientos de reversión innecesarios",
+        "Nómina: frecuencias de pago, periodos duales y dispersión bancaria con el layout del banco",
+        "Crédito a clientes: límites, autorizaciones y cierre de los caminos que permitían saltarse el límite; márgenes de factura con el costo real de venta",
+      ],
+      en: [
+        "Invoice and payment approvals before posting, also from Telegram, with follow-up entries generated automatically",
+        "Accounting automation: documents and reconciliation inside workflows, reusable entry and payment templates, and journal-sequence numbering",
+        "Mexican localization: payroll CFDI, CFDI filed in Documents, and rules that avoid needless reversal entries",
+        "Payroll: payment frequencies, dual periods and bank dispersion in the bank's file layout",
+        "Customer credit: limits, authorizations and closing the paths that let the limit be bypassed; invoice margins from the real cost of sale",
+      ],
+    },
+    tags: ["Odoo 19", "Python", "Contabilidad", "CFDI 4.0", "Nómina", "PostgreSQL"],
+  },
+  {
+    id: "odoo-companion",
+    year: { es: "2026", en: "2026" },
+    title: { es: "Odoo Companion", en: "Odoo Companion" },
+    role: { es: "App Android nativa para dispositivos de la empresa", en: "Native Android app for company devices" },
+    summary: {
+      es: "Convierte un teléfono de la empresa en un dispositivo de Odoo: manda ubicación, registro de llamadas y grabaciones por REST con token, trae un softphone SIP y desde la 2.1 escanea o sube documentos y muestra a dónde fueron a dar en Odoo.",
+      en: "Turns a company phone into an Odoo device: it sends location, call logs and recordings over token-authenticated REST, ships a SIP softphone and, since 2.1, scans or uploads documents and shows where they landed in Odoo.",
+    },
+    points: {
+      es: [
+        "Cola persistente (Room + WorkManager) que sobrevive reinicios y separa entregados, duplicados y descartados, para que un teléfono sano nunca parezca que pierde datos",
+        "Unidades tal como las reporta Android, documentadas contra lo que espera el servidor, para que ninguna velocidad se guarde 3.6× mal sin que nadie lo note",
+        "Genérica: se configura con URL, identificador y token, sin lógica de ningún cliente",
+      ],
+      en: [
+        "A persistent queue (Room + WorkManager) that survives reboots and separates delivered, duplicate and dropped rows, so a healthy phone never looks like it is losing data",
+        "Units exactly as Android reports them, documented against what the server expects, so no speed is ever stored 3.6× wrong without anyone noticing",
+        "Generic: configured with a URL, an identifier and a token, with no customer-specific logic",
+      ],
+    },
+    tags: ["Kotlin", "Android", "Room", "WorkManager", "SIP", "Odoo REST"],
   },
   {
     id: "odoo",

@@ -41,7 +41,7 @@ function ProjectLink({ project }: { project: Project }) {
   );
 }
 
-/** The App Store release gets a wider treatment: real screenshots in phone frames. */
+/** Featured work gets a wider card; the App Store release adds its screenshots. */
 function FeaturedProject({ project }: { project: Project }) {
   const t = useT();
   const { lang } = usePrefs();
@@ -65,6 +65,7 @@ function FeaturedProject({ project }: { project: Project }) {
         ))}
       </ul>
 
+      {project.shots && (
       <div className="-mx-6 mt-9 overflow-x-auto px-6 pb-3 sm:-mx-10 sm:px-10">
         <ul className="flex w-max gap-4">
           {APP_SHOTS.map((shot, i) => (
@@ -85,6 +86,7 @@ function FeaturedProject({ project }: { project: Project }) {
           ))}
         </ul>
       </div>
+      )}
 
       <div className="mt-6 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
@@ -150,7 +152,8 @@ function ListedProject({
 export function Work({ prCount }: { prCount: number }) {
   const t = useT();
   const { lang } = usePrefs();
-  const [featured, ...rest] = PROJECTS;
+  const featured = PROJECTS.filter((project) => project.featured);
+  const rest = PROJECTS.filter((project) => !project.featured);
   const prLabel = lang === "es" ? `${prCount} PRs mergeados` : `${prCount} merged PRs`;
 
   return (
@@ -163,7 +166,11 @@ export function Work({ prCount }: { prCount: number }) {
         </h2>
       </Reveal>
 
-      <FeaturedProject project={featured} />
+      <div className="space-y-8">
+        {featured.map((project) => (
+          <FeaturedProject key={project.id} project={project} />
+        ))}
+      </div>
 
       <div className="mt-14">
         {rest.map((project, i) => (

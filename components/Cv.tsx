@@ -16,8 +16,12 @@ import {
   STACK,
 } from "@/lib/content";
 
-/** Projects already told inside the experience timeline stay out of the CV list. */
-const CV_PROJECTS = PROJECTS.filter((project) => project.id !== "odoo");
+/**
+ * The odoo fork is already told in the experience timeline, and the two
+ * small tooling repos stay on the portfolio so the CV keeps to two pages.
+ */
+const CV_HIDDEN = new Set(["odoo", "precommit", "owl"]);
+const CV_PROJECTS = PROJECTS.filter((project) => !CV_HIDDEN.has(project.id));
 
 const CONTACTS = [
   { label: EMAIL, href: `mailto:${EMAIL}`, kind: "mail" },
