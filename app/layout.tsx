@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
 import { NO_FLASH_SCRIPT, Providers } from "./providers";
 import "./globals.css";
+import { GOATCOUNTER_URL } from "@/lib/content";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -52,6 +53,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="es" className={`${inter.variable} ${display.variable} ${mono.variable} h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH_SCRIPT }} />
+        {/* Cookieless page and download counts; count.js skips localhost on its own. */}
+        <script data-goatcounter={GOATCOUNTER_URL} async src="https://gc.zgo.at/count.js" />
       </head>
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>

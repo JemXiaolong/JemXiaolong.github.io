@@ -102,6 +102,8 @@ function Toolbar() {
         <a
           href={CV_PDF_PATH[lang]}
           download
+          data-goatcounter-click={`cv-pdf-${lang}`}
+          data-goatcounter-title={`Descarga del CV (${lang})`}
           className="rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-paper transition-opacity hover:opacity-85"
         >
           {t(CV.ui.download)} ↓
@@ -284,7 +286,7 @@ export function Cv() {
           </Reveal>
 
           <p className="cv-print-only mt-8 hidden text-[0.7rem] text-muted">
-            {t(CV.ui.web)}: <a href={`${PORTFOLIO_URL}/cv/`}>{PORTFOLIO_URL.replace("https://", "")}/cv</a>
+            {t(CV.ui.web)}: <a href={`${PORTFOLIO_URL}/cv/?ref=pdf`}>{PORTFOLIO_URL.replace("https://", "")}/cv</a>
           </p>
         </div>
       </article>

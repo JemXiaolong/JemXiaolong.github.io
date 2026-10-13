@@ -497,6 +497,7 @@ export const UI = {
 } as const;
 
 export const PORTFOLIO_URL = "https://jemxiaolong.github.io";
+export const GOATCOUNTER_URL = "https://jemxiaolong.goatcounter.com/count";
 export const CV_PDF_PATH: Record<Lang, string> = {
   es: "/cv/CV-Eli-Jeziel-Escudero-Maldonado.pdf",
   en: "/cv/CV-Eli-Jeziel-Escudero-Maldonado-EN.pdf",
