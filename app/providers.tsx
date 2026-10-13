@@ -18,7 +18,7 @@ export const NO_FLASH_SCRIPT = `
     document.documentElement.dataset.theme = t;
     var l = new URLSearchParams(location.search).get("lang");
     if (l !== "es" && l !== "en") l = localStorage.getItem("lang");
-    if (!l) l = (navigator.language || "es").toLowerCase().startsWith("en") ? "en" : "es";
+    if (l !== "es" && l !== "en") l = "es";
     document.documentElement.lang = l;
   } catch (e) {}
 })();
