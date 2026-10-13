@@ -16,7 +16,8 @@ export const NO_FLASH_SCRIPT = `
     var t = localStorage.getItem("theme");
     if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     document.documentElement.dataset.theme = t;
-    var l = localStorage.getItem("lang");
+    var l = new URLSearchParams(location.search).get("lang");
+    if (l !== "es" && l !== "en") l = localStorage.getItem("lang");
     if (!l) l = (navigator.language || "es").toLowerCase().startsWith("en") ? "en" : "es";
     document.documentElement.lang = l;
   } catch (e) {}

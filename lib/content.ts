@@ -67,6 +67,36 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
+    id: "historial-clinico",
+    year: { es: "2026", en: "2026" },
+    title: { es: "Historial Clínico", en: "Historial Clínico" },
+    role: {
+      es: "Producto propio — diseño, desarrollo y distribución",
+      en: "My own product — design, build and distribution",
+    },
+    summary: {
+      es: "Expediente clínico electrónico para consultorios: pacientes, antecedentes, consultas, recetas imprimibles, estudios de laboratorio y hospitalizaciones. Corre en una PC del consultorio, se abre desde cualquier compu de la red y se instala con un .exe que se actualiza solo.",
+      en: "An electronic medical record for private practices: patients, history, consultations, printable prescriptions, lab studies and hospital stays. It runs on one office PC, opens from any machine on the network and installs from a self-updating .exe.",
+    },
+    points: {
+      es: [
+        "Roles con acceso por médico tratante: cada médico ve solo a sus pacientes; la asistente registra y sube estudios sin ver consultas ni recetas",
+        "Especialidades configurables: cada una oculta campos o crea los suyos (texto, número con unidad, fecha, listas), con plantillas para Pediatría, Ginecología, Cardiología, Nutrición y Salud mental",
+        "Estudios con varios archivos (PDF e imágenes, HEIC de iPhone convertido a JPG), visor con zoom y rotación, y tipo validado por el contenido, no por la extensión",
+        "Instalador de Windows sin permisos de administrador y actualizaciones automáticas desde GitHub Releases con verificación SHA-256",
+        "Migraciones de base solo aditivas, con respaldo previo, para que cualquier versión vieja suba a la última sin perder datos",
+      ],
+      en: [
+        "Role-based access by treating physician: each doctor sees only their own patients; the assistant registers patients and uploads studies without seeing consultations or prescriptions",
+        "Configurable specialties: each one hides fields or adds its own (text, number with unit, date, lists), with templates for Paediatrics, Gynaecology, Cardiology, Nutrition and Mental health",
+        "Studies with multiple files (PDF and images, iPhone HEIC converted to JPG), a viewer with zoom and rotation, and file type validated by content, not extension",
+        "Windows installer that needs no admin rights, with automatic updates from GitHub Releases verified by SHA-256",
+        "Additive-only database migrations with a backup first, so any old version upgrades to the latest without losing data",
+      ],
+    },
+    tags: ["Next.js 16", "TypeScript", "Prisma", "SQLite", "Electron", "Zod"],
+  },
+  {
     id: "odoo",
     year: { es: "2025 — hoy", en: "2025 — now" },
     title: { es: "Fork del framework Odoo 19", en: "Odoo 19 framework fork" },
@@ -159,7 +189,7 @@ export const EXPERIENCE: Role[] = [
     company: "AgroMarin",
     title: { es: "Full Stack Developer", en: "Full Stack Developer" },
     period: { es: "ago. 2025 — actualidad", en: "Aug 2025 — present" },
-    length: { es: "1 año", en: "1 yr" },
+    length: { es: "1 año 2 meses", en: "1 yr 2 mos" },
     place: { es: "Metepec, Estado de México", en: "Metepec, México" },
     summary: {
       es: "Desarrollo y mantenimiento de módulos custom sobre un fork interno de Odoo 19 para operaciones agroindustriales: ventas, compras, inventario, geoespacial e integraciones.",
@@ -167,23 +197,27 @@ export const EXPERIENCE: Role[] = [
     },
     points: {
       es: [
-        "+850 commits entre core, enterprise y addons (~137k líneas), incluyendo contribuciones al core del framework: ORM, motor de vistas OWL, mensajería, editor HTML y contabilidad",
-        "Autor de 22 módulos nuevos desde cero: almacenamiento en Amazon S3 con modo híbrido y permisos por usuario, telemetría de PLCs industriales vía AWS IoT Core (MQTT) y catálogo web de vehículos con cotización por WhatsApp",
-        "Ingesta continua de telemetría GPS y sensores industriales con procesamiento asíncrono en cola de trabajos; diagnóstico y resolución de contención de concurrencia en PostgreSQL bajo ráfagas de escritura",
-        "Rendimiento en producción: perfilado de consultas lentas, análisis de planes de ejecución, tuning de PostgreSQL y dimensionamiento de workers en AWS EC2",
-        "Hardening del pipeline CI/CD en Docker: extensión Rust, upgrade a PostgreSQL 18 y automatización de linting a escala de repositorio",
-        "Integraciones con Telegram Bot (aprobaciones, asistencias, automatización contable), APIs externas y módulos geoespaciales con PostGIS",
+        "Más de 5,000 commits entre el framework y los addons, incluyendo el core: ORM, cliente web OWL, mensajería, editor HTML y contabilidad. Buena parte llegaron por loops de auditoría con agentes de IA que diseñé (lint, guías, tests), cada uno con su PR revisable",
+        "Migración de producción de AWS a OVH: despliegue A/B, respaldos con pgBackRest en dos regiones y restic, CrowdSec y aprovisionamiento con Ansible",
+        "odoo-rust-orm: reimplementación en Rust de la ruta de lectura del ORM, comparada en sombra contra el ORM de Python sobre la base real",
+        "Archivos del ERP en object storage (S3) con modo híbrido, y login por llave SSH sin API keys (auth_unix_peer)",
+        "Telegram como superficie de operación: aprobaciones, asistencias y un bot que responde preguntas sobre los datos del ERP, incluida la ubicación GPS de la flotilla",
+        "Servidor MCP para que agentes de IA lean y escriban en el ERP con los permisos de cada usuario",
+        "Ingesta continua de telemetría GPS y sensores industriales con cola de trabajos; diagnóstico de contención de concurrencia en PostgreSQL bajo ráfagas de escritura",
+        "Rendimiento en producción: perfilado de consultas lentas, planes de ejecución, tuning de PostgreSQL y dimensionamiento de workers",
       ],
       en: [
-        "850+ commits across core, enterprise and addons (~137k lines), including framework core contributions: ORM, OWL view engine, messaging, HTML editor and accounting",
-        "Author of 22 new modules from scratch: Amazon S3 storage with hybrid mode and per-user permissions, industrial PLC telemetry over AWS IoT Core (MQTT), and a vehicle web catalogue with WhatsApp quoting",
-        "Continuous GPS and industrial-sensor telemetry ingestion with async job-queue processing; diagnosed and fixed PostgreSQL concurrency contention under write bursts",
-        "Production performance: slow-query profiling, execution-plan analysis, PostgreSQL tuning and worker sizing on AWS EC2",
-        "CI/CD pipeline hardening in Docker: Rust extension, PostgreSQL 18 upgrade and repository-scale linting automation",
-        "Telegram Bot integrations (approvals, attendance, accounting automation), external APIs and geospatial modules with PostGIS",
+        "5,000+ commits across the framework and addons, including core: ORM, OWL web client, messaging, HTML editor and accounting. Many landed through AI-agent audit loops I designed (lint, guidelines, tests), each with its own reviewable PR",
+        "Moved production from AWS to OVH: A/B deploys, pgBackRest backups in two regions plus restic, CrowdSec and Ansible provisioning",
+        "odoo-rust-orm: a Rust reimplementation of the ORM read path, shadow-diffed against the Python ORM on the real database",
+        "ERP files on object storage (S3) with a hybrid mode, and SSH-key login with no API keys (auth_unix_peer)",
+        "Telegram as an operations surface: approvals, attendance and a bot that answers questions about ERP data, including the fleet's GPS location",
+        "An MCP server so AI agents read and write the ERP with each user's own permissions",
+        "Continuous GPS and industrial-sensor telemetry ingest on a job queue; diagnosed PostgreSQL concurrency contention under write bursts",
+        "Production performance: slow-query profiling, execution plans, PostgreSQL tuning and worker sizing",
       ],
     },
-    stack: ["Odoo 19", "Python", "PostgreSQL", "PostGIS", "OWL", "AWS", "MQTT", "Docker", "Rust"],
+    stack: ["Odoo 19", "Python 3.14", "PostgreSQL 18", "PostGIS", "OWL", "Rust", "OVH", "AWS", "Ansible", "MCP"],
   },
   {
     id: "geh-role",
@@ -318,6 +352,7 @@ export const UI = {
     experience: { es: "Experiencia", en: "Experience" },
     about: { es: "Sobre mí", en: "About" },
     contact: { es: "Contacto", en: "Contact" },
+    cv: { es: "CV", en: "CV" },
   },
   hero: {
     line1: { es: "Construyo cosas", en: "I build things" },
@@ -367,5 +402,64 @@ export const UI = {
   footer: {
     built: { es: "Hecho con", en: "Built with" },
     source: { es: "Código del sitio", en: "Site source" },
+  },
+} as const;
+
+export const PORTFOLIO_URL = "https://jemxiaolong.github.io";
+export const CV_PDF_PATH: Record<Lang, string> = {
+  es: "/cv/CV-Eli-Jeziel-Escudero-Maldonado.pdf",
+  en: "/cv/CV-Eli-Jeziel-Escudero-Maldonado-EN.pdf",
+};
+
+export const CV = {
+  name: "Eli Jeziel Escudero Maldonado",
+  headline: { es: "Senior Full Stack Developer · Odoo 19", en: "Senior Full Stack Developer · Odoo 19" },
+  location: { es: "Metepec, Estado de México · remoto", en: "Metepec, México · remote" },
+  summary: {
+    es: "Desarrollador full stack con más de diez años construyendo software. Trabajo dentro del fork del framework Odoo 19 que sostiene un ERP en producción —ORM, cliente web OWL, infraestructura y CI— y saco productos completos por mi cuenta: una app publicada en la App Store y un expediente clínico electrónico que se instala y se actualiza solo.",
+    en: "Full stack developer with over ten years building software. I work inside the Odoo 19 framework fork behind a production ERP —ORM, OWL web client, infrastructure and CI— and ship complete products on my own: an app live on the App Store and an electronic medical record that installs and updates itself.",
+  },
+  certifications: [
+    { name: "Microsoft Certified Systems Engineer (MCSE)", year: "2016" },
+    { name: "EC0160 Desarrollo de Código de Software", year: "2022" },
+    { name: "Databases — IT Specialist", year: "2023" },
+    { name: "Software Development — IT Specialist", year: "2023" },
+    { name: "Desarrollo de Apps Móviles — Google", year: "2022" },
+    { name: "Desarrollo Web II — Google", year: "2022" },
+  ],
+  education: [
+    {
+      period: "2020 — 2023",
+      title: {
+        es: "Lic. en Informática Administrativa: Desarrollo de Software",
+        en: "B.Sc. Business Informatics: Software Development",
+      },
+      school: "Universidad Digital del Estado de México (UDEMEX)",
+    },
+    {
+      period: "2013 — 2016",
+      title: {
+        es: "Técnico en Programación y Animación Digital",
+        en: "Technician in Programming and Digital Animation",
+      },
+      school: "CECyTEM — Metepec, Edo. Méx.",
+    },
+  ],
+  languages: [
+    { name: { es: "Español", en: "Spanish" }, level: { es: "Nativo", en: "Native" } },
+    { name: { es: "Inglés", en: "English" }, level: { es: "Técnico", en: "Technical" } },
+  ],
+  ui: {
+    contact: { es: "Contacto", en: "Contact" },
+    stack: { es: "Habilidades", en: "Skills" },
+    certifications: { es: "Certificaciones", en: "Certifications" },
+    languages: { es: "Idiomas", en: "Languages" },
+    profile: { es: "Perfil", en: "Profile" },
+    experience: { es: "Experiencia", en: "Experience" },
+    projects: { es: "Proyectos", en: "Projects" },
+    education: { es: "Formación", en: "Education" },
+    download: { es: "Descargar PDF", en: "Download PDF" },
+    back: { es: "Portafolio", en: "Portfolio" },
+    web: { es: "Versión interactiva", en: "Interactive version" },
   },
 } as const;

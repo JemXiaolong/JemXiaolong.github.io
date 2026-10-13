@@ -9,7 +9,7 @@ export function Hero() {
 
   const stats = [
     { value: "10", label: UI.stats.years },
-    { value: "850+", label: UI.stats.commits },
+    { value: "5,000+", label: UI.stats.commits },
     { value: "22", label: UI.stats.modules },
   ];
 

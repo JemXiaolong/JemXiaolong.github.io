@@ -108,3 +108,157 @@ body {
     transition: none;
   }
 }
+
+/* ---------- CV page ---------- */
+
+/* Rotating accent ring behind the photo. */
+.cv-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: conic-gradient(from 0deg, var(--accent), transparent 40%, var(--accent) 75%, transparent);
+  animation: cv-spin 9s linear infinite;
+}
+
+@keyframes cv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* The timeline spine draws itself downward as the section comes in. */
+.cv-timeline::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: top;
+  animation: cv-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+@keyframes cv-draw {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.cv-role[data-shown="true"] .cv-dot {
+  animation: cv-pulse 1.2s ease-out 0.2s 1;
+}
+
+@keyframes cv-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--accent);
+  }
+  100% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+
+.cv-chip {
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.cv-chip:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-photo::before,
+  .cv-timeline::before,
+  .cv-role .cv-dot {
+    animation: none;
+  }
+}
+
+/* Print / PDF: one clean light sheet, no motion, no chrome. */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  :root,
+  [data-theme="dark"] {
+    --paper: #f7f8fa;
+    --ink: #0d1117;
+    --muted: #4a5260;
+    --hairline: #dfe3ea;
+    --raise: #ffffff;
+    --accent: #0a7d55;
+    --accent-soft: rgba(10, 125, 85, 0.1);
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    font-size: 13px;
+  }
+
+  .cv-toolbar {
+    display: none !important;
+  }
+
+  .cv-page {
+    padding: 0 !important;
+  }
+
+  .cv-sheet {
+    max-width: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    grid-template-columns: 15.5rem 1fr !important;
+  }
+
+  .cv-side {
+    background: #f3f5f8;
+    border-right: 1px solid var(--hairline) !important;
+    border-bottom: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cv-main,
+  .cv-side {
+    padding: 1.6rem 1.5rem !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .cv-photo::before,
+  .cv-timeline::before {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .cv-photo::before {
+    background: var(--accent);
+  }
+
+  .cv-role,
+  .cv-project {
+    break-inside: avoid;
+  }
+
+  .cv-print-only {
+    display: block !important;
+  }
+
+  .cv-link {
+    text-decoration: none;
+  }
+}

@@ -38,6 +38,7 @@ export function Header() {
     { href: "#experience", label: UI.nav.experience },
     { href: "#about", label: UI.nav.about },
     { href: "#contact", label: UI.nav.contact },
+    { href: "/cv/", label: UI.nav.cv },
   ];
 
   return (
