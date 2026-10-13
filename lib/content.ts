@@ -182,6 +182,8 @@ export const PROJECTS: Project[] = [
       ],
     },
     tags: ["Kotlin", "Android", "Room", "WorkManager", "SIP", "Odoo REST"],
+    href: "https://github.com/Agro-Marin/odoo-companion",
+    linkLabel: { es: "Ver en GitHub", en: "View on GitHub" },
   },
   {
     id: "odoo",
